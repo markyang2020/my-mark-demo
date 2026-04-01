@@ -57,15 +57,36 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-// 提问用户输入问题
-rl.question('请输入您的问题：', (question) => {
-  // 获取当前时间戳，使用东八区时区
-  const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
-  // 输出用户的问题和时间戳
-  console.log(`您的问题：${question} - 时间戳：${timestamp}`);
-  // 关闭接口
+// 处理Ctrl+C信号
+rl.on('SIGINT', () => {
+  console.log('\n再见！');
   rl.close();
+  process.exit(0);
 });
+
+// 递归函数：持续询问用户输入
+function askQuestion() {
+  rl.question('请输入您的问题（输入 /exit 退出）：', (question) => {
+    // 检查是否要退出
+    if (question.trim() === '/exit') {
+      console.log('再见！');
+      rl.close();
+      return;
+    }
+
+    // 获取当前时间戳，使用东八区时区
+    const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+
+    // 输出用户的问题和时间戳
+    console.log(`您的问题：${question} - 时间戳：${timestamp}\n`);
+
+    // 继续询问下一个问题
+    askQuestion();
+  });
+}
+
+// 开始询问
+askQuestion();
 ```
 
 ### 5. 配置package.json
@@ -118,8 +139,14 @@ mark
 
 ### 示例输出
 ```
-请输入您的问题：什么是TypeScript？
+请输入您的问题（输入 /exit 退出）：什么是TypeScript？
 您的问题：什么是TypeScript？ - 时间戳：2026/4/1 10:30:15
+
+请输入您的问题（输入 /exit 退出）：Node.js是什么？
+您的问题：Node.js是什么？ - 时间戳：2026/4/1 10:30:25
+
+请输入您的问题（输入 /exit 退出）：/exit
+再见！
 ```
 
 ## 部署流程
