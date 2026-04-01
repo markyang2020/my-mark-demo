@@ -1,5 +1,5 @@
 {
-  "name": "my-mark-demo",
+  "name": "@yanglt/my-mark-demo",
   "version": "1.0.0",
   "description": "A simple CLI tool that responds to user questions with timestamps",
   "main": "dist/index.js",
@@ -14,8 +14,8 @@
     "cli",
     "demo"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "mark",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
