@@ -1,5 +1,5 @@
 {
-  "name": "mark",
+  "name": "my-mark-demo",
   "version": "1.0.0",
   "description": "A simple CLI tool that responds to user questions with timestamps",
   "main": "dist/index.js",
