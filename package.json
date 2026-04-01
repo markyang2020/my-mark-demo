@@ -1,6 +1,6 @@
 {
   "name": "@yanglt/my-mark-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple CLI tool that responds to user questions with timestamps",
   "main": "dist/index.js",
   "bin": {
